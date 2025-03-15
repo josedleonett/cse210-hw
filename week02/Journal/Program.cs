@@ -3,8 +3,12 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {   
-        
+    {
+        // As creativity requeriment I added improvements to the Save Journal and Load Journal options.
+        // I added a confirmation to save the journal and a message to inform the user that the journal was saved.
+        // I also added a message to inform the user that the journal was not saved if the user did not confirm the save.
+        // I added a message to inform the user that the journal was not found if the file does not exist.
+
         Journal journal = new Journal();
 
         while (true)
