@@ -5,6 +5,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        // As exceed requirements, I added a list of scriptures that user can choose. Also, I added a feature to add a new scripture.
+
         List<Scripture> scriptures = new List<Scripture>
         {
             new Scripture(new Reference("John", 3, 16), "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."),
