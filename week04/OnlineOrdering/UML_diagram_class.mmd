@@ -1,0 +1,48 @@
+---
+id: bd36d863-a5ab-4755-9685-8c3987945522
+---
+classDiagram
+
+    class Order {
+        -List~Product~ _products
+        -Customer _customer
+        +Order(List~Product~ products, Customer customer)
+        +string GetPackingLabel()
+        +string GetShippingLabel()
+        +double GetTotalPrice()
+    }
+
+    class Address {
+        -string _street
+        -string _city
+        -string _country
+        +Address(string street, string city, string country)
+        +bool IsCountryUsa()
+        +string GetFormattedAddress()
+    }
+
+    class Customer {
+        -string _name
+        -Address _address
+        +Customer(string name, Address address)
+        +void SetName(string name)
+        +string GetName()
+        +void SetAddress(Address address)
+        +Address GetAddress()
+        +bool IsLivingInUsa()
+    }
+
+    class Product {
+        -string _productId
+        -string _name
+        -double _unitPrice
+        -int _quantity
+        +Product(string productId, string name, double unitPrice, int quantity)
+        +string GetName()
+        +string GetProductId()
+        +double GetTotalCost()
+    }
+
+    Order "many" --> "1" Customer : belongs to
+    Order "many" *-- "many" Product : contains
+    Customer "1" *-- "1" Address : has
