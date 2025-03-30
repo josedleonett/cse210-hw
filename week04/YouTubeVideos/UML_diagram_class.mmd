@@ -1,0 +1,28 @@
+---
+id: 8cf8f0a7-397c-4804-a3bd-86f8f10c5666
+---
+classDiagram
+    class Video {
+        -string _title
+        -string _author
+        -int _length
+        -List~Comment~ _comments
+        +Video(string title, string author, int length)
+        +Video(string title, string author, int length, List~Comment~ comments)
+        +void AddComment(Comment comment)
+        +int CommentCount()
+        +string GetTitle()
+        +string GetAuthor()
+        +int GetLength()
+        +List~Comment~ GetComments()
+    }
+
+    class Comment {
+        -string _author
+        -string _content
+        +Comment(string author, string content)
+        +string GetAuthor()
+        +string GetContent()
+    }
+
+    Video "1" --> "*" Comment : contains
