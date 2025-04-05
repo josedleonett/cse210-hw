@@ -8,7 +8,6 @@ class Program
         // 1. Session Tracking
         // 2. Grouped Activity Summaries
         // 3. Detailed Activity Summaries
-        
 
         Session session = new Session();
         session.StartSession();

@@ -32,5 +32,5 @@ public class PromptResponse
     {
         return _dateTime;
     }
-    
+
 }

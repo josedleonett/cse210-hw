@@ -73,6 +73,7 @@ public class ReflectingActivity : Activity
                 Console.WriteLine("\nYou have answered all the questions availables.");
             }
         }
+        
         Console.WriteLine("\n");
         _reflectingsCount = usedQuestionsIndexes.Count;
         DisplayEndingMessage();
@@ -91,7 +92,7 @@ public class ReflectingActivity : Activity
         int randomIndex = random.Next(_questions.Count);
         Console.WriteLine(_questions[randomIndex]);
     }
-    
+
     public int GetReflectingCount()
     {
         return _reflectingsCount;
