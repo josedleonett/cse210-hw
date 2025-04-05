@@ -1,0 +1,79 @@
+classDiagram
+    class Program {
+        +Main(string[] args)
+    }
+
+    class Session {
+        -DateTime _startTime
+        -DateTime _endTime
+        -List~Activity~ _activities
+        +StartSession()
+        +EndSession()
+        +GetSessionDuration() double
+        +GetTotalActivitiesDuration() int
+        +AddActivity(Activity activity)
+        +DisplayActivitiesSummary()
+    }
+
+    class Activity {
+        -string _name
+        -string _description
+        -int _duration
+        +Activity(string name, string description)
+        +AskForActivityDuration()
+        +GetActivityDuration() int
+        +GetActivityName() string
+        +DisplayStartingMessage()
+        +DisplayEndingMessage()
+        +ShowSpinner(int seconds)
+        +ShowCountdown(int seconds)
+    }
+
+    class BreathingActivity {
+        -int _breathCount
+        +BreathingActivity()
+        +Run()
+        +GetBreathCount() int
+    }
+
+    class ReflectingActivity {
+        -List~string~ _prompts
+        -List~string~ _questions
+        -int _reflectingsCount
+        +ReflectingActivity()
+        +Run()
+        +GetRandomPrompt()
+        +GetRandomQuestion()
+        +GetReflectingCount() int
+    }
+
+    class ListingActivity {
+        -int _count
+        -List~string~ _prompts
+        -List~PromptResponse~ _promptResponses
+        +ListingActivity()
+        +Run()
+        +GetResponseCount() int
+        +GetRandomPrompt()
+        +DisplayListingSummary() string
+    }
+
+    class PromptResponse {
+        -string _prompt
+        -string _response
+        -string _activityName
+        -DateTime _dateTime
+        +PromptResponse(string prompt, string response, string activityName, DateTime dateTime)
+        +GetPrompt() string
+        +GetResponse() string
+        +GetActivityName() string
+        +GetDateTime() DateTime
+    }
+
+    %% Relationships
+    Program --> Session
+    Session --> Activity
+    Activity <|-- BreathingActivity
+    Activity <|-- ReflectingActivity
+    Activity <|-- ListingActivity
+    ListingActivity --> PromptResponse
