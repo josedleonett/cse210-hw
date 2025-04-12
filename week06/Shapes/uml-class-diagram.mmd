@@ -1,0 +1,36 @@
+---
+query: haz un diagrama de clases uml de este codigo sin incluir la clase progarm
+references:
+  - "File: cse210-hw/week06/Shapes/Program.cs"
+  - "File: cse210-hw/week06/Shapes/Shape.cs"
+  - "File: cse210-hw/week06/Shapes/Circle.cs"
+  - "File: cse210-hw/week06/Shapes/Rectangle.cs"
+  - "File: cse210-hw/week06/Shapes/Square.cs"
+generationTime: 2025-04-12T02:00:22.194Z
+---
+classDiagram
+    class Shape {
+        -string _color
+        +string GetColor()
+        +void SetColor(string color)
+        +abstract double GetArea()
+    }
+    class Circle {
+        -double _radius
+        +Circle(string color, double radius)
+        +double GetArea()
+    }
+    class Rectangle {
+        -double _length
+        -double _width
+        +Rectangle(string color, double length, double width)
+        +double GetArea()
+    }
+    class Square {
+        -double _side
+        +Square(string color, double side)
+        +double GetArea()
+    }
+    Shape <|-- Circle
+    Shape <|-- Rectangle
+    Shape <|-- Square
