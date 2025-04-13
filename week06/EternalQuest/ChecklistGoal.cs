@@ -11,6 +11,11 @@ public class ChecklistGoal : Goal
         _bonus = bonus;
     }
 
+    public int GetBonus()
+    {
+        return _bonus;
+    }
+    
     public override void RecordEvent()
     {
         if (IsComplete())
@@ -44,4 +49,5 @@ public class ChecklistGoal : Goal
     {
         return $"ChecklistGoal,{_shortName},{_description},{_points},{_amountCompleted},{_target},{_bonus}";
     }
+
 }

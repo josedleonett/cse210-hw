@@ -242,8 +242,25 @@ public class GoalManager
 
             if (!selectedGoal.IsComplete())
             {
+                int pointsBefore = _score;
+
                 selectedGoal.RecordEvent();
-                _score += selectedGoal.GetPoints();
+
+                if (selectedGoal is ChecklistGoal checklistGoal)
+                {
+                    if (checklistGoal.IsComplete())
+                    {
+                        _score += checklistGoal.GetPoints() + checklistGoal.GetBonus();
+                    }
+                    else
+                    {
+                        _score += checklistGoal.GetPoints();
+                    }
+                }
+                else
+                {
+                    _score += selectedGoal.GetPoints();
+                }
             }
             else
             {
@@ -254,7 +271,6 @@ public class GoalManager
             Thread.Sleep(2000);
             Console.WriteLine($"Press any key to return to the main menu...");
             Console.ReadKey();
-
         }
     }
 
@@ -262,6 +278,8 @@ public class GoalManager
     {
         using (StreamWriter outputFile = new StreamWriter(fullFilePath))
         {
+            outputFile.WriteLine(_score);
+
             foreach (var goal in _goals)
             {
                 outputFile.WriteLine(goal.GetStringRepresentation());
@@ -316,9 +334,12 @@ public class GoalManager
             _goals.Clear();
 
             string[] lines = File.ReadAllLines(fullFilePath);
-            foreach (string line in lines)
+
+            _score = int.Parse(lines[0]);
+
+            for (int i = 1; i < lines.Length; i++)
             {
-                string[] parts = line.Split(',');
+                string[] parts = lines[i].Split(',');
 
                 string goalType = parts[0];
                 switch (goalType)
@@ -352,7 +373,7 @@ public class GoalManager
                         int target = int.Parse(parts[5]);
                         int bonus = int.Parse(parts[6]);
                         ChecklistGoal checklistGoal = new ChecklistGoal(checklistName, checklistDescription, checklistPoints, target, bonus);
-                        for (int i = 0; i < amountCompleted; i++)
+                        for (int j = 0; j < amountCompleted; j++)
                         {
                             checklistGoal.RecordEvent();
                         }
