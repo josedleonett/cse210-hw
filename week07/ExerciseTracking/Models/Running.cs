@@ -4,26 +4,26 @@ namespace ExerciseTracking.Models
 {
     public class Running : Activity
     {
-        private double distance; // in kilometers
+        private double _distance; // in kilometers
 
         public Running(DateTime date, double duration, double distance) : base(date, duration)
         {
-            this.distance = distance;
+            _distance = distance;
         }
 
         public override double CalculateDistance()
         {
-            return distance;
+            return _distance;
         }
 
         public override double CalculateSpeed()
         {
-            return distance / (_duration / 60);
+            return _distance / (_duration / 60);
         }
 
         public override double CalculatePace()
         {
-            return _duration / distance;
+            return _duration / _distance;
         }
 
         public override string GetSummary()
@@ -31,7 +31,7 @@ namespace ExerciseTracking.Models
             return $"Running:\n" +
                    $"- Date: {_date.ToShortDateString()}\n" +
                    $"- Duration: {_duration} minutes\n" +
-                   $"- Distance: {distance:F2} km\n" +
+                   $"- Distance: {_distance:F2} km\n" +
                    $"- Speed: {CalculateSpeed():F2} km/h\n" +
                    $"- Pace: {CalculatePace():F2} min/km";
         }
